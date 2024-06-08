@@ -1,11 +1,12 @@
 import 'dart:async';
+import 'dart:convert';
 import 'dart:io';
 import 'package:dio/dio.dart';
 import 'package:logger/logger.dart';
 import 'package:pretty_dio_logger/pretty_dio_logger.dart';
 
-
 import '../../core/widgets/custom_snackbar.dart';
+import '../../data/models/remote/base.dart';
 import 'api_exceptions.dart';
 
 enum RequestType {
@@ -16,14 +17,10 @@ enum RequestType {
 }
 
 class BaseClient {
-  static final Dio _dio = Dio(
-      BaseOptions(
-          headers: {
-            'Content-Type' : 'application/json',
-            'Accept' : 'application/json'
-          }
-      )
-  )
+  static final Dio _dio = Dio(BaseOptions(headers: {
+    'Content-Type': 'application/json',
+    'Accept': 'application/json'
+  }))
     ..interceptors.add(PrettyDioLogger(
       requestHeader: true,
       requestBody: true,
@@ -41,21 +38,20 @@ class BaseClient {
   static get dio => _dio;
 
   /// perform safe api request
-  static safeApiCall(
-      String url,
-      RequestType requestType, {
-        Map<String, dynamic>? headers,
-        Map<String, dynamic>? queryParameters,
-        required Function(Response response) onSuccess,
-        Function(ApiException)? onError,
-        Function(int value, int progress)? onReceiveProgress,
-        Function(int total, int progress)?
+  static Future<Base?> safeApiCall(
+    String url,
+    RequestType requestType, {
+    Map<String, dynamic>? headers,
+    Map<String, dynamic>? queryParameters,
+    Function()? onSuccess,
+    Function(ApiException)? onError,
+    Function(int value, int progress)? onReceiveProgress,
+    Function(int total, int progress)?
         onSendProgress, // while sending (uploading) progress
-        Function? onLoading,
-        dynamic data,
-      }) async {
+    Function? onLoading,
+    dynamic data,
+  }) async {
     try {
-
       // 1) indicate loading state
       await onLoading?.call();
       // 2) try to perform http request
@@ -95,8 +91,16 @@ class BaseClient {
           options: Options(headers: headers),
         );
       }
-      // 3) return response (api done successfully)
-      await onSuccess(response);
+
+      // 3) if response is success
+      if (response.statusCode == 200) {
+
+        // 3.1) call onSuccess
+        if (onSuccess != null) await onSuccess();
+
+        return Base.fromJson(json.decode(response.toString()));
+      }
+      return null;
     } on DioException catch (error) {
       // dio error (api reach the server but not performed successfully
       _handleDioError(error: error, url: url, onError: onError);
@@ -117,15 +121,17 @@ class BaseClient {
   /// download file
   static download(
       {required String url, // file url
-        required String savePath, // where to save file
-        Function(ApiException)? onError,
-        Function(int value, int progress)? onReceiveProgress,
-        required Function onSuccess}) async {
+      required String savePath, // where to save file
+      Function(ApiException)? onError,
+      Function(int value, int progress)? onReceiveProgress,
+      required Function onSuccess}) async {
     try {
       await _dio.download(
         url,
         savePath,
-        options: Options(receiveTimeout: const Duration(seconds: _timeoutInSeconds), sendTimeout: const Duration(seconds: _timeoutInSeconds)),
+        options: Options(
+            receiveTimeout: const Duration(seconds: _timeoutInSeconds),
+            sendTimeout: const Duration(seconds: _timeoutInSeconds)),
         onReceiveProgress: onReceiveProgress,
       );
       onSuccess();
@@ -138,8 +144,8 @@ class BaseClient {
   /// handle unexpected error
   static _handleUnexpectedException(
       {Function(ApiException)? onError,
-        required String url,
-        required Object error}) {
+      required String url,
+      required Object error}) {
     if (onError != null) {
       onError(ApiException(
         message: error.toString(),
@@ -179,9 +185,8 @@ class BaseClient {
   /// handle Dio error
   static _handleDioError(
       {required DioException error,
-        Function(ApiException)? onError,
-        required String url}) {
-
+      Function(ApiException)? onError,
+      required String url}) {
     // 404 error
     if (error.response?.statusCode == 404) {
       if (onError != null) {
@@ -196,7 +201,8 @@ class BaseClient {
     }
 
     // no internet connection
-    if (error.message != null && error.message!.toLowerCase().contains('socket')) {
+    if (error.message != null &&
+        error.message!.toLowerCase().contains('socket')) {
       if (onError != null) {
         return onError(ApiException(
           message: 'No Internet Connection',

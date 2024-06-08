@@ -1,6 +1,6 @@
 class Base {
   final String? status;
-  final String? data;
+  final dynamic data;
   final String? message;
 
   Base({
