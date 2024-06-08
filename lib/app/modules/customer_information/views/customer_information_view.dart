@@ -2,10 +2,10 @@ import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
 
-import '../../../core/widgets/TextEForm.dart';
+import '../../../core/widgets/text_edit_field.dart';
 import '../../../core/widgets/action_button.dart';
-import '../../../data/globals/app_colors.dart';
-import '../../../data/globals/app_text_style.dart';
+import '../../../core/constants/app_colors.dart';
+import '../../../core/config/app_text_style.dart';
 import '../../../routes/app_pages.dart';
 import '../controllers/customer_information_controller.dart';
 
@@ -41,25 +41,25 @@ class CustomerInformationView extends GetView<CustomerInformationController> {
                 child: const Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    TextEForm(
+                    TextEditField(
                       label: '',
                       headline: 'First Name',
                     ),
                     SizedBox(height: 8.0),
 
-                    TextEForm(
+                    TextEditField(
                       headline: 'Last Name',
                       label: '',
                     ),
                     SizedBox(height: 8.0),
 
-                    TextEForm(
+                    TextEditField(
                       headline: 'Email',
                       label: '',
                     ),
                     SizedBox(height: 8.0),
 
-                    TextEForm(
+                    TextEditField(
                       headline: 'Phone',
                       label: '',
                     ),

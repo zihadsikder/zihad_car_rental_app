@@ -3,8 +3,8 @@ import 'package:get/get.dart';
 import 'package:zihad_car_rental/app/core/constants/app_assets.dart';
 
 import '../../../core/widgets/action_button.dart';
-import '../../../data/globals/app_colors.dart';
-import '../../../data/globals/app_text_style.dart';
+import '../../../core/constants/app_colors.dart';
+import '../../../core/config/app_text_style.dart';
 import '../../../routes/app_pages.dart';
 import '../controllers/vehicle_info_controller.dart';
 

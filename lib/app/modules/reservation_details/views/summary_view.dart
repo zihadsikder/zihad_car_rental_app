@@ -3,12 +3,12 @@ import 'package:flutter/widgets.dart';
 
 import 'package:get/get.dart';
 
-import '../../../data/globals/app_colors.dart';
-import '../../../data/globals/app_text_style.dart';
-import '../controllers/reservation_details_controller.dart';
+import '../../../core/constants/app_colors.dart';
+import '../../../core/config/app_text_style.dart';
+import '../controllers/summary_controller.dart';
 
-class ReservationDetailsView extends GetView<ReservationDetailsController> {
-  const ReservationDetailsView({super.key});
+class SummaryView extends GetView<SummaryController> {
+  const SummaryView({super.key});
   @override
   Widget build(BuildContext context) {
     return Scaffold(

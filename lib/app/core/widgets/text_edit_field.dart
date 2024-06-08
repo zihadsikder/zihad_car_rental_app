@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 
-import '../../data/globals/app_colors.dart';
+import '../constants/app_colors.dart';
 
-class TextEForm extends StatelessWidget {
-  const TextEForm({
+class TextEditField extends StatelessWidget {
+  const TextEditField({
 
     required this.label,
     super.key, required this.headline,

@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:zihad_car_rental/app/data/globals/app_text_style.dart';
+import 'package:zihad_car_rental/app/core/config/app_text_style.dart';
 
-import '../../data/globals/app_colors.dart';
+import '../constants/app_colors.dart';
 import 'package:intl/intl.dart';
 
-class TextEDateForm extends StatelessWidget {
-  const TextEDateForm({
+class CalenderInputForm extends StatelessWidget {
+  const CalenderInputForm({
     super.key,
     required this.headline,
   });

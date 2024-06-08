@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:zihad_car_rental/app/data/globals/app_colors.dart';
-import 'package:zihad_car_rental/app/data/globals/app_text_style.dart';
+import 'package:zihad_car_rental/app/core/widgets/calender_input_form.dart';
+import 'package:zihad_car_rental/app/core/constants/app_colors.dart';
+import 'package:zihad_car_rental/app/core/config/app_text_style.dart';
 import 'package:zihad_car_rental/app/routes/app_pages.dart';
 
-import '../../../core/widgets/TestEDate.dart';
-import '../../../core/widgets/TextEForm.dart';
+import '../../../core/widgets/text_edit_field.dart';
 import '../../../core/widgets/action_button.dart';
 import '../controllers/home_controller.dart';
 
@@ -42,14 +42,14 @@ class HomeView extends GetView<HomeController> {
                   child:  Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      const TextEForm(
+                      const TextEditField(
                         label: '',
                         headline: 'Reservation ID',
                       ),
                       const SizedBox(height: 8.0),
-                      const TextEDateForm(headline: 'Pickup Date'),
+                      const CalenderInputForm(headline: 'Pickup Date'),
                       const SizedBox(height: 8.0),
-                      const TextEDateForm(headline: 'Return Date'),
+                      const CalenderInputForm(headline: 'Return Date'),
                       const SizedBox(height: 16.0),
                       Row(
                         children: [
@@ -72,7 +72,7 @@ class HomeView extends GetView<HomeController> {
                         ],
                       ),
         
-                      const TextEForm(
+                      const TextEditField(
                         headline: 'Discount',
                         label: '',
                       ),
