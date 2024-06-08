@@ -5,15 +5,18 @@ import '../../services/remote/api_client.dart';
 import '../models/remote/base.dart';
 
 class CarRepository {
-  Future<List<Car>?> getCars() async {
+ static Future<List<Car>?> getCars() async {
     final Base? response =
         await BaseClient.safeApiCall(ApiEndPoints.cars_list, RequestType.get);
 
     if (response != null && response.data != null) {
-      final Map<String, dynamic> data = response.data as Map<String, dynamic>;
+      final  data = response.data;
 
       final List<Car>? cars =
-          List<Car>.from(data["data"]!.map((x) => Car.fromJson(x)));
+          List<Car>.from(data.map((x) => Car.fromJson(x)));
+
+      print('cars ::: ${cars}');
+
       return cars;
     }
     return null;

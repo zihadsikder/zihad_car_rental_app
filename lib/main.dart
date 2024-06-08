@@ -11,9 +11,8 @@ void main() {
     GetMaterialApp(
       title: "Application",
       debugShowCheckedModeBanner: false,
-      initialBinding: IntBinding(),
       initialRoute: AppPages.INITIAL,
-      themeMode: ThemeMode.system,
+      themeMode: ThemeMode.light,
       theme: AppThemeData.lightThemData,
       getPages: AppPages.routes,
     ),

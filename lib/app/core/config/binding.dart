@@ -9,12 +9,6 @@ import '../../modules/additional_charges/controllers/additional_controller.dart'
 class IntBinding extends Bindings {
   @override
   void dependencies() async {
-    //await Get.putAsync<AuthCache>(() async => await AuthCache().init());
 
-    Get.lazyPut<HomeController>(() => HomeController());
-    Get.lazyPut<AdditionalController>(() => AdditionalController());
-    Get.lazyPut<CustomerInformationController>(() => CustomerInformationController());
-    Get.lazyPut<SummaryController>(() => SummaryController());
-    Get.lazyPut<VehicleInfoController>(() => VehicleInfoController());
   }
 }

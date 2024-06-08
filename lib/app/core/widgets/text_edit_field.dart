@@ -20,15 +20,15 @@ class TextEditField extends StatelessWidget {
         Row(
           children: [
             Text(headline),
-            Positioned(
-              right: 0,
-              top: -4,
-              child: Icon(
-                Icons.star,
-                color: AppColors.starColor,
-                size: 8,
-              ),
-            ),
+            // Positioned(
+            //   right: 0,
+            //   top: -4,
+            //   child: Icon(
+            //     Icons.star,
+            //     color: AppColors.starColor,
+            //     size: 8,
+            //   ),
+            // ),
           ],
         ),
         const SizedBox(height: 8.0,),

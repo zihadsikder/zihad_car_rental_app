@@ -1,12 +1,18 @@
 import 'package:get/get.dart';
+import 'package:zihad_car_rental/app/data/repository/car_repository.dart';
+
+import '../../../data/models/remote/car.dart';
 
 class VehicleInfoController extends GetxController {
-  //TODO: Implement VehicleInfoController
 
-  final count = 0.obs;
+  final isLoading = true.obs;
+
+  final cars = <Car>[].obs;
+
   @override
   void onInit() {
     super.onInit();
+    fetchCarsData();
   }
 
   @override
@@ -19,5 +25,13 @@ class VehicleInfoController extends GetxController {
     super.onClose();
   }
 
-  void increment() => count.value++;
+  Future<void> fetchCarsData() async {
+    final val = await CarRepository.getCars();
+    if (val != null) {
+
+      isLoading.value = false;
+      cars.value = val;
+
+    }
+  }
 }
