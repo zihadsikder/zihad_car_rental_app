@@ -16,19 +16,17 @@ class TextEditField extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Row(
           children: [
             Text(headline),
-            // Positioned(
-            //   right: 0,
-            //   top: -4,
-            //   child: Icon(
-            //     Icons.star,
-            //     color: AppColors.starColor,
-            //     size: 8,
-            //   ),
-            // ),
+            if (headline != 'Discount')
+            Icon(
+              Icons.star,
+              color: AppColors.starColor,
+              size: 8,
+            ),
           ],
         ),
         const SizedBox(height: 8.0,),

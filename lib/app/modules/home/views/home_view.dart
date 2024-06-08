@@ -15,31 +15,30 @@ class HomeView extends GetView<HomeController> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-
       body: SingleChildScrollView(
         child: SafeArea(
-        
           child: Padding(
             padding: const EdgeInsets.all(16.0),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                const SizedBox(height: 60,),
+                const SizedBox(
+                  height: 60,
+                ),
                 Text(
                   "Reservation Details",
                   style: AppTextStyle.headerTextStyle(),
                 ),
                 Container(height: 2, color: AppColors.barColor),
-                const SizedBox(height: 22,),
+                const SizedBox(
+                  height: 22,
+                ),
                 Container(
-                  padding:const EdgeInsets.all(16.0) ,
+                  padding: const EdgeInsets.all(16.0),
                   decoration: BoxDecoration(
-                    border: Border.all(
-                      color: AppColors.primaryColor
-                    ),
-                    borderRadius: BorderRadius.circular(4.0)
-                  ),
-                  child:  Column(
+                      border: Border.all(color: AppColors.primaryColor),
+                      borderRadius: BorderRadius.circular(4.0)),
+                  child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       const TextEditField(
@@ -61,8 +60,10 @@ class HomeView extends GetView<HomeController> {
                                 enabled: true,
                                 border: OutlineInputBorder(
                                   borderRadius: BorderRadius.circular(4),
-                                  borderSide: BorderSide( // Define the border style
-                                    color: Colors.blue, // Choose your desired color
+                                  borderSide: BorderSide(
+                                    // Define the border style
+                                    color: Colors.blue,
+                                    // Choose your desired color
                                     width: 2, // Choose your desired width
                                   ),
                                 ),
@@ -71,27 +72,23 @@ class HomeView extends GetView<HomeController> {
                           ),
                         ],
                       ),
-        
                       const TextEditField(
                         headline: 'Discount',
                         label: '',
                       ),
-        
-        
                     ],
                   ),
                 ),
-
-                ActionButton(onPressed: (){Get.toNamed(Routes.CUSTOMER_INFORMATION);},)
+                ActionButton(
+                  onPressed: () {
+                    Get.toNamed(Routes.CUSTOMER_INFORMATION);
+                  },
+                )
               ],
             ),
           ),
         ),
       ),
-
-
     );
   }
 }
-
-

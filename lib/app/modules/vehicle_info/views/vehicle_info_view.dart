@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:zihad_car_rental/app/core/constants/app_assets.dart';
 import 'package:zihad_car_rental/app/modules/vehicle_info/views/vehicle_widget.dart';
 
 import '../../../core/widgets/action_button.dart';
@@ -10,7 +9,7 @@ import '../../../routes/app_pages.dart';
 import '../controllers/vehicle_info_controller.dart';
 
 class VehicleInfoView extends GetView<VehicleInfoController> {
-  const VehicleInfoView({Key? key}) : super(key: key);
+  const VehicleInfoView({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -101,7 +100,7 @@ class VehicleInfoView extends GetView<VehicleInfoController> {
                           physics: const NeverScrollableScrollPhysics(),
                           itemBuilder: (context, index) {
                             final car = controller.cars.value[index];
-            
+
                             return VehicleWidget(car: car);
                           },
                         ),
